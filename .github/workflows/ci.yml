@@ -28,14 +28,14 @@ jobs:
         # MQTT server protocol. One of: 'wss' | 'ws' | 'mqtt' | 'mqtts' | 'tcp' | 'ssl' | 'wx' | 'wxs'
         protocol: 'mqtt'
         # MQTT server host
-        host: 'localhost' 
+        host: ${{ secrets.IOT_HUB_HOSTNAME }}
         # MQTT server port
-        port: 1883
+        port: 8883
         # MQTT topic
         topic: 'some topic'
         # MQTT username
-        username: 'username'
+        username: ${{ secrets.IOT_HUB_HOSTNAME }}
         # MQTT password
-        password: 'password'
+        password: ${{ secrets.IOT_HUB_PASSWORD }}
         # Message to send
         message: ''
