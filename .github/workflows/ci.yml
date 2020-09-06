@@ -19,3 +19,23 @@ jobs:
       with:
         dotnet-version: '3.1.x' # SDK Version to use; x will use the latest version of the 3.1 channel
     - run: dotnet build src/actions-hackathon.csproj
+      
+    - name: MQTT Publish Action
+    # You may pin to the exact commit or the version.
+    # uses: juhrlass/mqtt-action@aeed6028879ce9c67a67bab2d4d1dc870e415c38
+      uses: juhrlass/mqtt-action@v1.0.0
+      with:
+        # MQTT server protocol. One of: 'wss' | 'ws' | 'mqtt' | 'mqtts' | 'tcp' | 'ssl' | 'wx' | 'wxs'
+        protocol: 'mqtt'
+        # MQTT server host
+        host: 'localhost' 
+        # MQTT server port
+        port: 1883
+        # MQTT topic
+        topic: 'some topic'
+        # MQTT username
+        username: 'username'
+        # MQTT password
+        password: 'password'
+        # Message to send
+        message: ''
