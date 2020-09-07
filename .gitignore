@@ -348,3 +348,6 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
+/audacity
+/src/iot-app/.build
+/src/iot-app/.vscode
