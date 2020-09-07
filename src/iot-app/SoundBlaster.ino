@@ -7,8 +7,8 @@ AudioClass& Audio = AudioClass::getInstance();
 const int BUFFER_SIZE = 32000 * 3 + 45;
 // The size of the sound file, in bytes
 // You'll need to get this yourself from  your sound sample properties
-const int SOUND_SIZE = 1;
-const int SUCCESS_SOUND_SIZE = 1;
+const int SOUND_SIZE = 87072;
+const int SUCCESS_SOUND_SIZE = 121532;
 int lastButtonAState;
 int buttonAState;
 
