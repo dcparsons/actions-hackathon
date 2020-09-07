@@ -21,7 +21,7 @@ jobs:
     - run: dotnet build src/actions-hackathon.csproj
       
     - name: Publish Action C2D Message
-      uses: dcparsons/azure-iot-action@v1.0.1
+      uses: dcparsons/azure-iot-action@v1.0.2
       with:
         iot-hub-connection-string: ${{ secrets.IOT_HUB_CONNECTION_STRING }}
         device-id: ${{ secrets.IOT_DEVICE_NAME }}
