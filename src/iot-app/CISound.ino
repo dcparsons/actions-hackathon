@@ -5,6 +5,7 @@
 
 #include "Wifi.h"
 #include "SoundController.h"
+#include "MQTT.h"
 
 static bool hasWifi = false;
 
@@ -33,6 +34,8 @@ void setup()
   hasWifi = InitializeWifi();
 
   SetupAudioBuffer();
+
+  ConfigureMQTTClient();
 
   // initialize the button pin as a input
   pinMode(USER_BUTTON_A, INPUT);
