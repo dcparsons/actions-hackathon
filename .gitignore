@@ -352,5 +352,5 @@ MigrationBackup/
 /src/iot-app/.build
 /src/iot-app/.vscode
 
-/src/iot-app/sound/failure-sound.h
-/src/iot-app/sound/success-sound.h
+src/iot-app/success-sound.h
+src/iot-app/failure-sound.h
