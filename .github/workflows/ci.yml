@@ -18,7 +18,7 @@ jobs:
     - uses: actions/setup-dotnet@v1
       with:
         dotnet-version: '3.1.x' # SDK Version to use; x will use the latest version of the 3.1 channel
-    - run: dotnet build src/actions-hackathon.csproj
+    - run: dotnet build src/web-app/actions-hackathon.csproj
       
     - name: Publish Action C2D Message
       uses: dcparsons/azure-iot-action@v1.0.2
