@@ -71,4 +71,11 @@ void loop()
 
   lastButtonAState = buttonAState;
   lastButtonBState = buttonBState;
+
+  if(hasWifi){
+    DevKitMQTTClient_Check();
+  }
+  
+
+  delay(1000);
 }
