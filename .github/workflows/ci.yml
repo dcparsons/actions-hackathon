@@ -27,4 +27,4 @@ jobs:
       with:
         iot-hub-connection-string: ${{ secrets.IOT_HUB_CONNECTION_STRING }}
         device-id: ${{ secrets.IOT_DEVICE_NAME }}
-        message: "failure"
+        message: ${{ if(success(), "success", "failure") }}
