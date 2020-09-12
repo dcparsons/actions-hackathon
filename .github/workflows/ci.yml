@@ -7,6 +7,8 @@ on:
     branches: [ master ]
   pull_request:
     branches: [ master ]
+  workflow_dispatch:
+  
 
 jobs:
   build:
@@ -19,10 +21,20 @@ jobs:
       with:
         dotnet-version: '3.1.x' # SDK Version to use; x will use the latest version of the 3.1 channel
     - run: dotnet build src/web-app/actions-hackathon.csproj
-      
+
+# I don't love this approach.  Ideally I would be able to set the message conditionally without needing to duplicate the steps. 
     - name: Publish Action C2D Message
+      if: ${{ failure() }}
       uses: dcparsons/azure-iot-action@v1.0.2
       with:
         iot-hub-connection-string: ${{ secrets.IOT_HUB_CONNECTION_STRING }}
         device-id: ${{ secrets.IOT_DEVICE_NAME }}
         message: "failure"
+
+    - name: Publish Action C2D Message
+      if: ${{ success() }}
+      uses: dcparsons/azure-iot-action@v1.0.2
+      with:
+        iot-hub-connection-string: ${{ secrets.IOT_HUB_CONNECTION_STRING }}
+        device-id: ${{ secrets.IOT_DEVICE_NAME }}
+        message: "success"
