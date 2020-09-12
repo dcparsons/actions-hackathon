@@ -10,7 +10,7 @@ const int BUFFER_SIZE = 32000 * 3 + 45;
 
 //The size, in bytes, of our sound files
 const int FAILURE_SOUND_SIZE = 87072;
-const int SUCCESS_SOUND_SIZE = 121532;
+const int SUCCESS_SOUND_SIZE = 61344;
 
 // Our audio buffer
 char *audioBuffer;

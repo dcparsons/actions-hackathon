@@ -8,6 +8,7 @@
 #include "MQTT.h"
 
 static bool hasWifi = false;
+static bool soundPlaying = false;
 
 int lastButtonAState;
 int buttonAState;
@@ -15,13 +16,10 @@ int buttonAState;
 int lastButtonBState;
 int buttonBState;
 
-/*
-* sketch methods
-*/
 void setup()
 {
   Screen.init();
-  Screen.print(0, "CI Sound");
+  Screen.print(0, "Noisy Build");
   Screen.print(2, "Initializing...");
 
   pinMode(LED_BUILTIN, OUTPUT);
@@ -35,9 +33,11 @@ void setup()
 
   SetupAudioBuffer();
 
-  ConfigureMQTTClient();
+  DevKitMQTTClient_SetOption(OPTION_MINI_SOLUTION_NAME, "NoisyBuild");
+  DevKitMQTTClient_Init(true);
 
-  // initialize the button pin as a input
+  DevKitMQTTClient_SetMessageCallback(ProcessMessage);
+
   pinMode(USER_BUTTON_A, INPUT);
 
   lastButtonAState = digitalRead(USER_BUTTON_A);
@@ -49,8 +49,8 @@ void setup()
 
 void loop()
 {
-  // Check the state of button A, and if pressed
-  // call the playSound() function.
+  // This code exists simply to test the sounds. 
+  /*
   buttonAState = digitalRead(USER_BUTTON_A);
   buttonBState = digitalRead(USER_BUTTON_B);
 
@@ -71,11 +71,29 @@ void loop()
 
   lastButtonAState = buttonAState;
   lastButtonBState = buttonBState;
+  */
 
   if(hasWifi){
     DevKitMQTTClient_Check();
   }
-  
+
+  while(soundPlaying){
+    delay(10);
+  }
 
   delay(1000);
+}
+
+void ProcessMessage(const char* payLoad, int size){
+  soundPlaying = true;
+
+  if(strcmp(payLoad, "success") == 0){
+      PlaySuccessSound();
+      Screen.print(1, payLoad, true);
+    }
+  else if(strcmp(payLoad, "failure") == 0){
+      PlayFailureSound();
+      Screen.print(1, payLoad, true);
+    }
+  soundPlaying = false;
 }
